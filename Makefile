@@ -42,12 +42,12 @@ deps:
 .PHONY: release
 release:
 	git tag -a v$(VERSION) -m v$(VERSION) -f && git push --tags -f
-	@github-release release --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN)
-	@github-release upload --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN) --name $(NAME)-darwin-amd64 --file bin/darwin-amd64/$(NAME)
+	@github-release release --user $(VENDOR) --repo $(NAME) --tag v$(VERSION) -s $(TOKEN)
+	@github-release upload --user $(VENDOR) --repo $(NAME) --tag v$(VERSION) -s $(TOKEN) --name $(NAME)-darwin-amd64 --file bin/darwin-amd64/$(NAME)
 
 .PHONY: retract
 retract:
-	@github-release delete --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN)
+	@github-release delete --user $(VENDOR) --repo $(NAME) --tag v$(VERSION) -s $(TOKEN)
 
 .PHONY: test
 test:
