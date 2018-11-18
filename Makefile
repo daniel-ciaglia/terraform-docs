@@ -22,7 +22,7 @@ authors:
 .PHONY: build
 build: authors build-darwin-amd64
 	$(eval SHA256 = $(firstword $(shell shasum -p -a 256 bin/darwin-amd64/$(NAME))))
-	sed  -i '' 's/.*sha256.*/  sha256 "$(SHA256)"/' terraform-docs.rb
+	@echo "$(SHA256) bin/darwin-amd64/$(NAME)"
 
 build-darwin-amd64:
 	GOOS=darwin GOARCH=amd64 $(GOBUILD) -o bin/darwin-amd64/$(NAME)
@@ -41,13 +41,13 @@ deps:
 
 .PHONY: release
 release:
-	git tag -a v$(VERSION) -m v$(VERSION) && git push --tags
-	github-release release --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN)
-	github-release upload --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN) --name $(NAME)-darwin-amd64 --file bin/darwin-amd64/$(NAME)
+	git tag -a v$(VERSION) -m v$(VERSION) -f && git push --tags -f
+	@github-release release --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN)
+	@github-release upload --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN) --name $(NAME)-darwin-amd64 --file bin/darwin-amd64/$(NAME)
 
 .PHONY: retract
 retract:
-	github-release delete --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN)
+	@github-release delete --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN)
 
 .PHONY: test
 test:

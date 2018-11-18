@@ -3,9 +3,9 @@ This repo is a permanent fork of the original project as I need the `--follow-mo
 
 ### Installation via brew
 ```
-brew tap daniel-ciaglia/terraform-docs
-brew tap-pin daniel-ciaglia/terraform-docs
-brew install terraform-docs
+brew tap daniel-ciaglia/taps
+brew tap-pin daniel-ciaglia/taps
+brew install daniel-ciaglia/taps/terraform-docs
 ```
 See the [Homebrew documentation](https://docs.brew.sh/Taps) for more information on managing taps.
 
