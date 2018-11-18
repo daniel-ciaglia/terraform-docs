@@ -1,3 +1,15 @@
+## permanent fork
+This repo is a permanent fork of the original project as I need the `--follow-modules` option, which was rejected by the maintainer (https://github.com/segmentio/terraform-docs/pull/87).
+
+### Installation via brew
+```
+brew tap daniel-ciaglia/taps
+brew tap-pin daniel-ciaglia/taps
+brew install daniel-ciaglia/taps/terraform-docs
+```
+See the [Homebrew documentation](https://docs.brew.sh/Taps) for more information on managing taps.
+
+
 ## terraform-docs
 
 [![CircleCI](https://circleci.com/gh/segmentio/terraform-docs.svg?style=svg)](https://circleci.com/gh/segmentio/terraform-docs)
@@ -28,7 +40,7 @@ This project is no longer maintained by Segment. Instead, [Martin Etmajer](https
 ```bash
 
   Usage:
-    terraform-docs [--no-required] [--no-sort | --sort-inputs-by-required] [--with-aggregate-type-defaults] [json | markdown | md] <path>...
+    terraform-docs [--no-required] [--no-sort | --sort-inputs-by-required] [--with-aggregate-type-defaults] [--follow-modules] [json | markdown | md] <path>...
     terraform-docs -h | --help
 
   Examples:
@@ -48,12 +60,16 @@ This project is no longer maintained by Segment. Instead, [Martin Etmajer](https
     # Generate markdown tables of inputs and outputs for the given module and ../config.tf
     $ terraform-docs md ./my-module ../config.tf
 
+    # Generate markdown tables of inputs, outputs and used local modules
+    $ terraform-docs --follow-modules md ./my-stack
+
   Options:
     -h, --help                       show help information
     --no-required                    omit "Required" column when generating markdown
     --no-sort                        omit sorted rendering of inputs and ouputs
     --sort-inputs-by-required        sort inputs by name and prints required inputs first
     --with-aggregate-type-defaults   print default values of aggregate types
+    --follow-modules                 follow local modules in stacks (ignored when selected output is JSON)
     --version                        print version
 
 ```
@@ -126,6 +142,13 @@ This module has a variable and an output.  This text here will be output before 
 | vpc\_id | The VPC ID. |
 
 ```
+
+## About the --follow-modules option
+This option allows to document a stack of terraform infrastructure and includes the used local modules.
+The option follows the 1st level of modules only, it does not attempt to download modules from a registry or repository.
+
+The option is silently dropped when using `JSON` output as the JSON document can not
+trivially be rewritten to include the modules documentation.
 
 ## License
 
