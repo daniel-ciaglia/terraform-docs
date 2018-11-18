@@ -1,3 +1,15 @@
+## permanent fork
+This repo is a permanent fork of the original project as I need the `--follow-modules` option, which was rejected by the maintainer (https://github.com/segmentio/terraform-docs/pull/87).
+
+### Installation via brew
+```
+brew tap daniel-ciaglia/terraform-docs
+brew tap-pin daniel-ciaglia/terraform-docs
+brew install terraform-docs
+```
+See the [Homebrew documentation](https://docs.brew.sh/Taps) for more information on managing taps.
+
+
 ## terraform-docs
 
 [![CircleCI](https://circleci.com/gh/segmentio/terraform-docs.svg?style=svg)](https://circleci.com/gh/segmentio/terraform-docs)

@@ -1,7 +1,7 @@
 NAME        := terraform-docs
-VENDOR      := segmentio
-DESCRIPTION := Generate docs from Terraform modules
-MAINTAINER  := Martin Etmajer <metmajer@getcloudnative.io>
+VENDOR      := daniel-ciaglia
+DESCRIPTION := Generate docs from Terraform modules / a forked version
+MAINTAINER  := Daniel Ciaglia <daniel.ciaglia@kreuzwerker.de>
 URL         := https://github.com/$(VENDOR)/$(NAME)
 LICENSE     := MIT
 
@@ -10,28 +10,22 @@ VERSION     := $(shell cat ./VERSION)
 GOBUILD     := go build -ldflags "-X main.version=$(VERSION)"
 GOPKGS      := $(shell go list ./... | grep -v /vendor)
 
+TOKEN = $(shell cat .token)
 
 .PHONY: all
-all: clean deps lint test build
+all: clean deps test build
 
 .PHONY: authors
 authors:
-	git log --all --format='%aN <%cE>' | sort -u | egrep -v noreply > AUTHORS
+	git log --all --format='%aN <%aE>' | sort -u | egrep -v noreply > AUTHORS
 
 .PHONY: build
-build: authors build-darwin-amd64 build-freebsd-amd64 build-linux-amd64 build-windows-amd64
+build: authors build-darwin-amd64
+	$(eval SHA256 = $(firstword $(shell shasum -p -a 256 bin/darwin-amd64/$(NAME))))
+	sed  -i '' 's/.*sha256.*/  sha256 "$(SHA256)"/' terraform-docs.rb
 
 build-darwin-amd64:
 	GOOS=darwin GOARCH=amd64 $(GOBUILD) -o bin/darwin-amd64/$(NAME)
-
-build-freebsd-amd64:
-	GOOS=freebsd GOARCH=amd64 $(GOBUILD) -o bin/freebsd-amd64/$(NAME)
-
-build-linux-amd64:
-	GOOS=linux GOARCH=amd64 $(GOBUILD) -o bin/linux-amd64/$(NAME)
-
-build-windows-amd64:
-	GOOS=windows GOARCH=amd64 $(GOBUILD) -o bin/windows-amd64/$(NAME).exe
 
 .PHONY: clean
 clean:
@@ -47,8 +41,13 @@ deps:
 
 .PHONY: release
 release:
-	git tag -a v$(VERSION) -m v$(VERSION)
-	git push --tags
+	git tag -a v$(VERSION) -m v$(VERSION) && git push --tags
+	github-release release --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN)
+	github-release upload --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN) --name $(NAME)-darwin-amd64 --file bin/darwin-amd64/$(NAME)
+
+.PHONY: retract
+retract:
+	github-release delete --user $(VENDOR) --repo $(NAME) --tag $(VERSION) -s $(TOKEN)
 
 .PHONY: test
 test:
