@@ -21,7 +21,7 @@ var version = "dev"
 
 const usage = `
   Usage:
-    terraform-docs [--no-required] [--no-sort | --sort-inputs-by-required] [--with-aggregate-type-defaults] [--follow-modules] [json | markdown | md] <path>...
+    terraform-docs [--no-required] [--no-sort | --sort-inputs-by-required] [--with-aggregate-type-defaults] [--follow-modules] [json | markdown | md] [document | table] <path>...
     terraform-docs -h | --help
 
   Examples:
@@ -174,9 +174,9 @@ func doPrint(args map[string]interface{}, document *doc.Doc, printSettings setti
 	switch {
 	case args["markdown"].(bool), args["md"].(bool):
 		if args["document"].(bool) {
-			out, err = markdown_document.Print(document, printSettings)
+			return markdown_document.Print(document, printSettings)
 		} else {
-			out, err = markdown_table.Print(document, printSettings)
+			return markdown_table.Print(document, printSettings)
 		}
 	case args["json"].(bool):
 		return json.Print(document, printSettings)

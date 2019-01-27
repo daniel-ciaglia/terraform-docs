@@ -42,6 +42,17 @@ func (d *Doc) HasModules() bool {
 	return len(d.Modules) > 0
 }
 
+// Value represents a Terraform value.
+type Value struct {
+	Type  string
+	Value interface{}
+}
+
+// IsAggregateType indicates if a Terraform value is an aggregate type.
+func (v Value) IsAggregateType() bool {
+	return v.Type == "list" || v.Type == "map"
+}
+
 // CreateFromPaths creates a new document from a list of file or directory paths.
 func CreateFromPaths(paths []string) (*Doc, error) {
 	names := make([]string, 0)
