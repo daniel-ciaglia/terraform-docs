@@ -122,3 +122,10 @@ Description: It's output number two.
 ### unquoted
 
 Description: It's unquoted output.
+
+## Modules
+
+The following modules are used:
+### bar
+
+Source: github.com/foo/bar

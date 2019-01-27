@@ -108,5 +108,10 @@
       "Description": "It's unquoted output."
     }
   ],
-  "Modules": null
+  "Modules": [
+    {
+      "Name": "bar",
+      "Source": "github.com/foo/bar"
+    }
+  ]
 }

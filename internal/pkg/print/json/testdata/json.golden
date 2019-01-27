@@ -108,5 +108,10 @@
       "Description": "It's output number one."
     }
   ],
-  "Modules": null
+  "Modules": [
+    {
+      "Name": "bar",
+      "Source": "github.com/foo/bar"
+    }
+  ]
 }

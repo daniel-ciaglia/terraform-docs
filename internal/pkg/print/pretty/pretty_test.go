@@ -86,6 +86,11 @@ func TestPretty(t *testing.T) {
 			"  " + sgr_color_1 + "output.output-1" + sgr_reset + "\n" +
 			"  " + sgr_color_2 + "It's output number one." + sgr_reset + "\n" +
 			"\n" +
+			"\n" +
+			"\n" +
+			"  " + sgr_color_1 + "module.bar" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "github.com/foo/bar" + sgr_reset + "\n" +
+			"\n" +
 			"\n"
 
 	assert.Equal(t, expected, actual)
@@ -168,6 +173,11 @@ func TestPrettyWithWithAggregateTypeDefaults(t *testing.T) {
 			"\n" +
 			"  " + sgr_color_1 + "output.output-1" + sgr_reset + "\n" +
 			"  " + sgr_color_2 + "It's output number one." + sgr_reset + "\n" +
+			"\n" +
+			"\n" +
+			"\n" +
+			"  " + sgr_color_1 + "module.bar" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "github.com/foo/bar" + sgr_reset + "\n" +
 			"\n" +
 			"\n"
 
@@ -252,6 +262,11 @@ func TestPrettyWithSortByName(t *testing.T) {
 			"  " + sgr_color_1 + "output.unquoted" + sgr_reset + "\n" +
 			"  " + sgr_color_2 + "It's unquoted output." + sgr_reset + "\n" +
 			"\n" +
+			"\n" +
+			"\n" +
+			"  " + sgr_color_1 + "module.bar" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "github.com/foo/bar" + sgr_reset + "\n" +
+			"\n" +
 			"\n"
 
 	assert.Equal(t, expected, actual)
@@ -335,6 +350,11 @@ func TestPrettyWithSortInputsByRequired(t *testing.T) {
 			"\n" +
 			"  " + sgr_color_1 + "output.unquoted" + sgr_reset + "\n" +
 			"  " + sgr_color_2 + "It's unquoted output." + sgr_reset + "\n" +
+			"\n" +
+			"\n" +
+			"\n" +
+			"  " + sgr_color_1 + "module.bar" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "github.com/foo/bar" + sgr_reset + "\n" +
 			"\n" +
 			"\n"
 

@@ -38,3 +38,9 @@ module "foo" {
 | unquoted | It's unquoted output. |
 | output-2 | It's output number two. |
 | output-1 | It's output number one. |
+
+## Modules
+
+| Name | Source |
+|------|-------------|
+| bar | github.com/foo/bar |
