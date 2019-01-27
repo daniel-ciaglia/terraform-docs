@@ -2,146 +2,86 @@
 This repo is a permanent fork of the original project as I need the `--follow-modules` option, which was rejected by the maintainer (https://github.com/segmentio/terraform-docs/pull/87).
 
 ### Installation via brew
-```
+```bash
 brew tap daniel-ciaglia/taps
 brew tap-pin daniel-ciaglia/taps
 brew install daniel-ciaglia/taps/terraform-docs
 ```
 See the [Homebrew documentation](https://docs.brew.sh/Taps) for more information on managing taps.
 
+### Additional CLI option
+Generate Markdown tables of inputs, outputs and used local modules
+```bash
+$ terraform-docs --follow-modules md ./my-stack
+```
 
 ## terraform-docs
 
-[![CircleCI](https://circleci.com/gh/segmentio/terraform-docs.svg?style=svg)](https://circleci.com/gh/segmentio/terraform-docs)
+[![CircleCI](https://circleci.com/gh/segmentio/terraform-docs.svg?style=svg)](https://circleci.com/gh/segmentio/terraform-docs) [![Go Report Card](https://goreportcard.com/badge/github.com/segmentio/terraform-docs)](https://goreportcard.com/report/github.com/segmentio/terraform-docs)
 
-A utility to generate documentation from Terraform modules.
+> **A utility to generate documentation from Terraform modules in various output formats.**
 
-<img width="1284" alt="screen shot 2016-06-14 at 5 38 37 pm" src="https://cloud.githubusercontent.com/assets/1661587/16049202/1ad63c16-3257-11e6-9e2c-6bb83e684ba4.png">
+![terraform-docs-teaser](https://raw.githubusercontent.com/segmentio/terraform-docs/media/terraform-docs-teaser.png)
+
+## Table of Contents
+
+- [Maintenance](#maintenance)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Development Requirements](#development-requirements)
+- [License](#license)
 
 ## Maintenance
 
 This project is no longer maintained by Segment. Instead, [Martin Etmajer](https://github.com/metmajer), unaffiliated with Segment, from [GetCloudnative](https://github.com/getcloudnative), is maintaining the project with help from these awesome [contributors](AUTHORS).
 
-## Features
-
-  - View docs for inputs and outputs
-  - Generate docs for inputs and outputs
-  - Generate JSON docs (for customizing presentation)
-  - Generate markdown tables of inputs and outputs
-
 ## Installation
 
-  - `go get github.com/segmentio/terraform-docs`
-  - [Binaries](https://github.com/segmentio/terraform-docs/releases)
-  - `brew install terraform-docs` (on macOS)
-
-## Usage
+The latest version can be installed using `go get`:
 
 ```bash
-
-  Usage:
-    terraform-docs [--no-required] [--no-sort | --sort-inputs-by-required] [--with-aggregate-type-defaults] [--follow-modules] [json | markdown | md] <path>...
-    terraform-docs -h | --help
-
-  Examples:
-
-    # View inputs and outputs
-    $ terraform-docs ./my-module
-
-    # View inputs and outputs for variables.tf and outputs.tf only
-    $ terraform-docs variables.tf outputs.tf
-
-    # Generate a JSON of inputs and outputs
-    $ terraform-docs json ./my-module
-
-    # Generate markdown tables of inputs and outputs
-    $ terraform-docs md ./my-module
-
-    # Generate markdown tables of inputs and outputs for the given module and ../config.tf
-    $ terraform-docs md ./my-module ../config.tf
-
-    # Generate markdown tables of inputs, outputs and used local modules
-    $ terraform-docs --follow-modules md ./my-stack
-
-  Options:
-    -h, --help                       show help information
-    --no-required                    omit "Required" column when generating markdown
-    --no-sort                        omit sorted rendering of inputs and ouputs
-    --sort-inputs-by-required        sort inputs by name and prints required inputs first
-    --with-aggregate-type-defaults   print default values of aggregate types
-    --follow-modules                 follow local modules in stacks (ignored when selected output is JSON)
-    --version                        print version
-
+go get github.com/segmentio/terraform-docs
 ```
 
-## Example
-
-Given a simple module at `./_example`:
-
-```tf
-/**
- * This module has a variable and an output.  This text here will be output before any inputs or outputs!
- */
-
-variable "subnet_ids" {
-  description = "a comma-separated list of subnet IDs"
-}
-
-// The VPC ID.
-output "vpc_id" {
-  value = "vpc-5c1f55fd"
-}
-
-```
-
-To view docs:
+If you are a Mac OS X user, you can use [Homebrew](https://brew.sh):
 
 ```bash
-$ terraform-docs _example
+brew install terraform-docs
 ```
 
-To output JSON docs:
+For other platforms, please have a look at our [binary releases](https://github.com/segmentio/terraform-docs/releases).
+
+## Getting Started
+
+Show help information:
 
 ```bash
-$ terraform-docs json _example
-{
-  "Comment": "This module has a variable and an output.  This text here will be output before any inputs or outputs!\n",
-  "Inputs": [
-    {
-      "Name": "subnet_ids",
-      "Description": "a comma-separated list of subnet IDs",
-      "Default": ""
-    }
-  ],
-  "Outputs": [
-    {
-      "Name": "vpc_id",
-      "Description": "The VPC ID.\n"
-    }
-  ]
-}
+terraform-docs --help
 ```
 
-To output markdown docs (_Note: underscores are escaped in markdown output_):
+Generate JSON from the Terraform configuration in folder `./examples`:
 
 ```bash
-$ terraform-docs md _example
-This module has a variable and an output.  This text here will be output before any inputs or outputs!
-
-
-## Inputs
-
-| Name | Description | Default | Required |
-|------|-------------|:-----:|:-----:|
-| subnet\_ids | a comma-separated list of subnet IDs | - | yes |
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
-| vpc\_id | The VPC ID. |
-
+terraform-docs json ./examples
 ```
+
+Generate Markdown tables from the Terraform configuration in folder `./examples`:
+
+```bash
+terraform-docs markdown table ./examples
+```
+
+Generate a Markdown document from the Terraform configuration in folder `./examples`:
+
+```bash
+terraform-docs markdown document ./examples
+```
+
+## Development Requirements
+
+- Go 1.11+
+- [git-chlog](https://github.com/git-chglog/git-chglog)
+- [golangci-lint](https://github.com/golangci/golangci-lint)
 
 ## About the --follow-modules option
 This option allows to document a stack of terraform infrastructure and includes the used local modules.

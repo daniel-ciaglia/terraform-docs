@@ -22,12 +22,6 @@ type Doc struct {
 	Modules []Module
 }
 
-// Value represents a Terraform value.
-type Value struct {
-	Type  string
-	Value interface{}
-}
-
 // HasComment indicates if the document has a comment.
 func (d *Doc) HasComment() bool {
 	return len(d.Comment) > 0

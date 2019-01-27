@@ -31,13 +31,17 @@ build-darwin-amd64:
 clean:
 	rm -rf ./bin
 
-.PHONY: lint
-lint:
-	gometalinter --config gometalinter.json ./...
+.PHONY: changelog
+changelog:
+	git-chglog -o CHANGELOG.md
 
 .PHONY: deps
 deps:
-	dep ensure
+	GO111MODULE=on go mod vendor
+
+.PHONY: lint
+lint:
+	golangci-lint run ./...
 
 .PHONY: release
 release:

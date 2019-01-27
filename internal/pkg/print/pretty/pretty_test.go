@@ -43,16 +43,19 @@ func TestPretty(t *testing.T) {
 			"\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.unquoted" + sgr_reset + " (required)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
+			"\n" +
+			"  " + sgr_color_1 + "var.string-3" + sgr_reset + " (\"\")\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.string-2" + sgr_reset + " (required)\n" +
 			"  " + sgr_color_2 + "It's string number two." + sgr_reset + "\n" +
 			"\n" +
-			"  " + sgr_color_1 + "var.string-1" + sgr_reset + " (bar)\n" +
+			"  " + sgr_color_1 + "var.string-1" + sgr_reset + " (\"bar\")\n" +
 			"  " + sgr_color_2 + "It's string number one." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.map-3" + sgr_reset + " (<map>)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.map-2" + sgr_reset + " (required)\n" +
 			"  " + sgr_color_2 + "It's map number two." + sgr_reset + "\n" +
@@ -61,7 +64,7 @@ func TestPretty(t *testing.T) {
 			"  " + sgr_color_2 + "It's map number one." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.list-3" + sgr_reset + " (<list>)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.list-2" + sgr_reset + " (required)\n" +
 			"  " + sgr_color_2 + "It's list number two." + sgr_reset + "\n" +
@@ -123,16 +126,19 @@ func TestPrettyWithWithAggregateTypeDefaults(t *testing.T) {
 			"\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.unquoted" + sgr_reset + " (required)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
+			"\n" +
+			"  " + sgr_color_1 + "var.string-3" + sgr_reset + " (\"\")\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.string-2" + sgr_reset + " (required)\n" +
 			"  " + sgr_color_2 + "It's string number two." + sgr_reset + "\n" +
 			"\n" +
-			"  " + sgr_color_1 + "var.string-1" + sgr_reset + " (bar)\n" +
+			"  " + sgr_color_1 + "var.string-1" + sgr_reset + " (\"bar\")\n" +
 			"  " + sgr_color_2 + "It's string number one." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.map-3" + sgr_reset + " ({})\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.map-2" + sgr_reset + " (required)\n" +
 			"  " + sgr_color_2 + "It's map number two." + sgr_reset + "\n" +
@@ -141,7 +147,7 @@ func TestPrettyWithWithAggregateTypeDefaults(t *testing.T) {
 			"  " + sgr_color_2 + "It's map number one." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.list-3" + sgr_reset + " ([])\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.list-2" + sgr_reset + " (required)\n" +
 			"  " + sgr_color_2 + "It's list number two." + sgr_reset + "\n" +
@@ -212,7 +218,7 @@ func TestPrettyWithSortByName(t *testing.T) {
 			"  " + sgr_color_2 + "It's list number two." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.list-3" + sgr_reset + " (<list>)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.map-1" + sgr_reset + " (<map>)\n" +
 			"  " + sgr_color_2 + "It's map number one." + sgr_reset + "\n" +
@@ -221,16 +227,19 @@ func TestPrettyWithSortByName(t *testing.T) {
 			"  " + sgr_color_2 + "It's map number two." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.map-3" + sgr_reset + " (<map>)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
-			"  " + sgr_color_1 + "var.string-1" + sgr_reset + " (bar)\n" +
+			"  " + sgr_color_1 + "var.string-1" + sgr_reset + " (\"bar\")\n" +
 			"  " + sgr_color_2 + "It's string number one." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.string-2" + sgr_reset + " (required)\n" +
 			"  " + sgr_color_2 + "It's string number two." + sgr_reset + "\n" +
 			"\n" +
+			"  " + sgr_color_1 + "var.string-3" + sgr_reset + " (\"\")\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
+			"\n" +
 			"  " + sgr_color_1 + "var.unquoted" + sgr_reset + " (required)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"\n" +
 			"\n" +
@@ -296,22 +305,25 @@ func TestPrettyWithSortInputsByRequired(t *testing.T) {
 			"  " + sgr_color_2 + "It's string number two." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.unquoted" + sgr_reset + " (required)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.list-1" + sgr_reset + " (<list>)\n" +
 			"  " + sgr_color_2 + "It's list number one." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.list-3" + sgr_reset + " (<list>)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.map-1" + sgr_reset + " (<map>)\n" +
 			"  " + sgr_color_2 + "It's map number one." + sgr_reset + "\n" +
 			"\n" +
 			"  " + sgr_color_1 + "var.map-3" + sgr_reset + " (<map>)\n" +
-			"  " + sgr_color_2 + "-" + sgr_reset + "\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
-			"  " + sgr_color_1 + "var.string-1" + sgr_reset + " (bar)\n" +
+			"  " + sgr_color_1 + "var.string-1" + sgr_reset + " (\"bar\")\n" +
 			"  " + sgr_color_2 + "It's string number one." + sgr_reset + "\n" +
+			"\n" +
+			"  " + sgr_color_1 + "var.string-3" + sgr_reset + " (\"\")\n" +
+			"  " + sgr_color_2 + "" + sgr_reset + "\n" +
 			"\n" +
 			"\n" +
 			"\n" +
