@@ -22,12 +22,6 @@ type Doc struct {
 	Modules []Module
 }
 
-// Value represents a Terraform value.
-type Value struct {
-	Type  string
-	Value interface{}
-}
-
 // HasComment indicates if the document has a comment.
 func (d *Doc) HasComment() bool {
 	return len(d.Comment) > 0
@@ -46,6 +40,17 @@ func (d *Doc) HasOutputs() bool {
 // HasModules indicates if the document has modules.
 func (d *Doc) HasModules() bool {
 	return len(d.Modules) > 0
+}
+
+// Value represents a Terraform value.
+type Value struct {
+	Type  string
+	Value interface{}
+}
+
+// IsAggregateType indicates if a Terraform value is an aggregate type.
+func (v Value) IsAggregateType() bool {
+	return v.Type == "list" || v.Type == "map"
 }
 
 // CreateFromPaths creates a new document from a list of file or directory paths.

@@ -10,7 +10,7 @@ VERSION     := $(shell cat ./VERSION)
 GOBUILD     := go build -ldflags "-X main.version=$(VERSION)"
 GOPKGS      := $(shell go list ./... | grep -v /vendor)
 
-TOKEN = $(shell cat .token)
+TOKEN = $(shell cat ~/.github.token)
 
 .PHONY: all
 all: clean deps test build
@@ -31,13 +31,17 @@ build-darwin-amd64:
 clean:
 	rm -rf ./bin
 
-.PHONY: lint
-lint:
-	gometalinter --config gometalinter.json ./...
+.PHONY: changelog
+changelog:
+	git-chglog -o CHANGELOG.md
 
 .PHONY: deps
 deps:
-	dep ensure
+	GO111MODULE=on go mod vendor
+
+.PHONY: lint
+lint:
+	golangci-lint run ./...
 
 .PHONY: release
 release:
