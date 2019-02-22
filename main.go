@@ -178,9 +178,8 @@ func doPrint(args map[string]interface{}, document *doc.Doc, printSettings setti
 	case args["markdown"].(bool), args["md"].(bool):
 		if args["document"].(bool) {
 			return markdown_document.Print(document, printSettings)
-		} else {
-			return markdown_table.Print(document, printSettings)
 		}
+		return markdown_table.Print(document, printSettings)
 	case args["json"].(bool):
 		return json.Print(document, printSettings)
 	default:
