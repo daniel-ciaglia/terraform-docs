@@ -17,7 +17,7 @@ $ terraform-docs --follow-modules md ./my-stack
 
 ## terraform-docs
 
-[![CircleCI](https://circleci.com/gh/segmentio/terraform-docs.svg?style=svg)](https://circleci.com/gh/segmentio/terraform-docs) [![Go Report Card](https://goreportcard.com/badge/github.com/segmentio/terraform-docs)](https://goreportcard.com/report/github.com/segmentio/terraform-docs)
+[![CircleCI](https://circleci.com/gh/daniel-ciaglia/terraform-docs.svg?style=svg)](https://circleci.com/gh/daniel-ciaglia/terraform-docs) [![Go Report Card](https://goreportcard.com/badge/github.com/daniel-ciaglia/terraform-docs)](https://goreportcard.com/report/github.com/daniel-ciaglia/terraform-docs)
 
 > **A utility to generate documentation from Terraform modules in various output formats.**
 

@@ -141,6 +141,9 @@ func main() {
 			}
 
 			tempstring, err = doPrint(args, document, printSettings)
+			if err != nil {
+				log.Fatal(err)
+			}
 
 			// print the Module name as header
 			switch {
