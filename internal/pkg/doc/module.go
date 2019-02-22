@@ -7,7 +7,7 @@ type Module struct {
 	basepath string
 }
 
-// get the Basepath of a module
+// GetBasepath gets the Basepath of a module
 func (o *Module) GetBasepath() string {
 	return o.basepath
 }
